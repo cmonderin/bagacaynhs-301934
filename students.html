@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Records - Bagacay NHS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-blue-700">Student Records</h1>
+      <a href="dashboard.html" class="text-sm text-blue-600 hover:text-blue-800 underline">← Back to Dashboard</a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-4 py-10">
+    
+    <!-- Search Bar -->
+    <div class="mb-6">
+      <input type="text" id="searchInput" placeholder="Search student name..." class="w-full sm:w-1/2 px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-blue-200">
+    </div>
+
+    <!-- Table -->
+    <div class="overflow-x-auto bg-white shadow rounded-lg">
+      <table class="min-w-full table-auto">
+        <thead class="bg-blue-600 text-white">
+          <tr>
+            <th class="px-4 py-3 text-left">#</th>
+            <th class="px-4 py-3 text-left">Student Name</th>
+            <th class="px-4 py-3 text-left">Grade Level</th>
+            <th class="px-4 py-3 text-left">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="studentTable" class="divide-y divide-gray-200">
+          <!-- Sample students -->
+          <tr>
+            <td class="px-4 py-2">1</td>
+            <td class="px-4 py-2">Juan Dela Cruz</td>
+            <td class="px-4 py-2">Grade 10</td>
+            <td class="px-4 py-2 space-x-2">
+              <a href="sf9.html" class="text-blue-600 hover:underline">SF9</a>
+              <a href="sf10.html" class="text-green-600 hover:underline">SF10</a>
+            </td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2">2</td>
+            <td class="px-4 py-2">Maria Santos</td>
+            <td class="px-4 py-2">Grade 7</td>
+            <td class="px-4 py-2 space-x-2">
+              <a href="sf9.html" class="text-blue-600 hover:underline">SF9</a>
+              <a href="sf10.html" class="text-green-600 hover:underline">SF10</a>
+            </td>
+          </tr>
+          <!-- Add more students as needed -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- Filter Script -->
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const studentTable = document.getElementById('studentTable');
+
+    searchInput.addEventListener('keyup', function () {
+      const filter = searchInput.value.toLowerCase();
+      const rows = studentTable.getElementsByTagName('tr');
+
+      for (let i = 0; i < rows.length; i++) {
+        const nameCell = rows[i].getElementsByTagName('td')[1];
+        if (nameCell) {
+          const textValue = nameCell.textContent || nameCell.innerText;
+          rows[i].style.display = textValue.toLowerCase().includes(filter) ? '' : 'none';
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
